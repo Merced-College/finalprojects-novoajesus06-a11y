@@ -352,7 +352,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             ent.frameTimer = 0;
             ent.frame = (ent.frame + 1) % ent.frameCount;
         }
-
+//claud
         // Try queued direction
         if (ent instanceof Player) {
             Player p = (Player) ent;
@@ -399,7 +399,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
                 }
             }
         }
-
+//claud
         // Move
         int[] d = DIR[ent.dir];
         double nx = ent.x + d[0] * ent.speed * dt / 1000.0;
@@ -415,7 +415,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             ent.x = tileCX(tc); ent.y = tileCY(tr);
         }
     }
-
+//attack used claud
     // ── Attack ───────────────────────────────────────────────────────────────
     void doAttack() {
         if (!gameRunning || player.dead || swordsHeld &lt;= 0 || attackActive) return;
@@ -436,7 +436,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             score += 200;
         }
     }
-
+//claud
     // ── Paint ─────────────────────────────────────────────────────────────────
     @Override
     protected void paintComponent(Graphics g) {
@@ -458,7 +458,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             if (screen == SCREEN_OVER) drawGameOver(g2);
         }
     }
-
+//claud
     void drawUI(Graphics2D g2) {
         g2.setColor(new Color(10, 10, 20));
         g2.fillRect(0, 0, W, UI_H);
@@ -501,7 +501,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         }
         // Draw maze faintly
         drawMazeWalls(g2, true);
-
+//claud
         // Title card
         int cx = W / 2, cy = H / 2;
         g2.setColor(new Color(0, 0, 0, 180));
@@ -554,7 +554,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             }
         }
     }
-
+//claud
     void drawDots(Graphics2D g2) {
         if (dots == null) return;
         for (Dot d : dots) {
@@ -599,7 +599,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         int fi = player.frame % frames.length;
         drawSpriteScaled(g2, frames[fi], px, py, player.facing, 0.72);
     }
-
+//claud graphics except for map
     void drawOrcs(Graphics2D g2) {
         if (orcs == null) return;
         for (Orc o : orcs) {
@@ -643,7 +643,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
-
+//claud
     void drawLevelBanner(Graphics2D g2) {
         int cx = W / 2, cy = H / 2;
         g2.setColor(new Color(0, 0, 0, 170));
@@ -654,7 +654,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         FontMetrics fm = g2.getFontMetrics();
         g2.drawString(msg, cx - fm.stringWidth(msg) / 2, cy + 12);
     }
-
+//claud
     void drawGameOver(Graphics2D g2) {
         int cx = W / 2, cy = H / 2;
         g2.setColor(new Color(0, 0, 0, 200));
@@ -685,7 +685,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             g2.drawImage(img, cx - dw / 2, cy - dh / 2, dw, dh, null);
         }
     }
-
+//claud
     // ── Key handling ─────────────────────────────────────────────────────────
     @Override public void keyPressed(KeyEvent e) {
         int k = e.getKeyCode();
@@ -902,6 +902,7 @@ function moveEntity(ent,dt,isPlayer){
       }
     }
   }
+  //claud
   const d=DIRS[ent.dir];
   const nx=ent.x+d[0]*ent.speed*dt/1000,ny=ent.y+d[1]*ent.speed*dt/1000;
   const nc=pixToCol(nx),nr=pixToRow(ny);
@@ -945,7 +946,7 @@ function update(dt){
     if(Math.sqrt(dx*dx+dy*dy)<TILE*0.68&&!player.dead){player.dead=true;player.deathTimer=1800;}
   }
 }
-
+//claud
 function drawSprite(ctx,frames,frameIdx,cx,cy,facing,scale){
   if(!frames||!frames.length)return;
   const f=frames[frameIdx%frames.length];
@@ -968,6 +969,7 @@ function draw(){
       ctx.strokeStyle='#1e3668';ctx.lineWidth=1.5;ctx.strokeRect(c*TILE+1,r*TILE+1,TILE-2,TILE-2);
     }
   }
+  //claud
   if(dots)for(const d of dots){
     if(d.eaten)continue;
     const dx=d.c*TILE+TILE/2,dy=d.r*TILE+TILE/2;
@@ -1000,7 +1002,7 @@ function draw(){
     ctx.globalAlpha=1;
   }
 }
-
+//claud
 function updateUI(){
   document.getElementById('lives-el').innerHTML='&#9829; '+lives;
   document.getElementById('score-el').textContent='SCORE '+score;
@@ -1043,7 +1045,7 @@ document.addEventListener('keydown',e=>{
   if(e.key in m){player.nextDir=m[e.key];e.preventDefault();}
   if(e.key===' '){doAttack();e.preventDefault();}
 });
-
+//claud
 let tx=0,ty=0;
 canvas.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
 canvas.addEventListener('touchend',e=>{
